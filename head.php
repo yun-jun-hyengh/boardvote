@@ -23,7 +23,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 ?>
 
 <!-- 상단 시작 { -->
-<div id="hd" style="background: antiquewhite;">
+<div id="hd" style="background: local;">
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
     <div id="skip_to_container"><a href="#container">본문 바로가기</a></div>
 
@@ -34,8 +34,8 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
     ?>
     <div id="hd_wrapper" style="height: 35px;">
 
-        <div id="logo">
-            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
+        <div id="logo" style="padding: 10px 0 0;">
+            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/Preview.png" alt="<?php echo $config['cf_title']; ?>" style="width:149px; height:75px;"></a>
         </div> 
         
     </div>
@@ -43,9 +43,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
         <div class="inner">
             <ul id="hd_qnb">
 	            <li><a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=free">자유게시판</a></li>
-	            <li><a href="<?php echo G5_BBS_URL ?>/qalist.php">Q&A</a></li>
-	            <li><a href="<?php echo G5_BBS_URL ?>/new.php">새글</a></li>
-	            <li><a href="<?php echo G5_BBS_URL ?>/current_connect.php" class="visit">접속자<strong class="visit-num"><?php echo connect(); // 현재 접속자수, 테마의 스킨을 사용하려면 스킨을 theme/basic 과 같이 지정 ?></strong></a></li>
+	            <li><a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=notice">공지사항</a></li>
                 <?php if ($is_member) {  ?>
                 <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
                 <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
