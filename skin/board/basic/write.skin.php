@@ -83,14 +83,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 	    <?php } ?>
 	</div>
 	
-    <?php if ($option) { ?>
-    <div class="write_div">
-        <span class="sound_only">옵션</span>
-        <ul class="bo_v_option">
-        <?php echo $option ?>
-        </ul>
-    </div>
-    <?php } ?>
+    
 
     <div class="bo_w_tit write_div">
         <label for="wr_subject" class="sound_only">제목<strong>필수</strong></label>
@@ -126,39 +119,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         </div>
         
     </div>
+    
 
-    <?php for ($i=1; $is_link && $i<=G5_LINK_COUNT; $i++) { ?>
-    <div class="bo_w_link write_div">
-        <label for="wr_link<?php echo $i ?>"><i class="fa fa-link" aria-hidden="true"></i><span class="sound_only"> 링크  #<?php echo $i ?></span></label>
-        <input type="text" name="wr_link<?php echo $i ?>" value="<?php if($w=="u"){ echo $write['wr_link'.$i]; } ?>" id="wr_link<?php echo $i ?>" class="frm_input full_input" size="50">
-    </div>
-    <?php } ?>
-
-    <?php for ($i=0; $is_file && $i<$file_count; $i++) { ?>
-    <div class="bo_w_flie write_div">
-        <div class="file_wr write_div">
-            <label for="bf_file_<?php echo $i+1 ?>" class="lb_icon"><i class="fa fa-folder-open" aria-hidden="true"></i><span class="sound_only"> 파일 #<?php echo $i+1 ?></span></label>
-            <input type="file" name="bf_file[]" id="bf_file_<?php echo $i+1 ?>" title="파일첨부 <?php echo $i+1 ?> : 용량 <?php echo $upload_max_filesize ?> 이하만 업로드 가능" class="frm_file ">
-        </div>
-        <?php if ($is_file_content) { ?>
-        <input type="text" name="bf_content[]" value="<?php echo ($w == 'u') ? $file[$i]['bf_content'] : ''; ?>" title="파일 설명을 입력해주세요." class="full_input frm_input" size="50" placeholder="파일 설명을 입력해주세요.">
-        <?php } ?>
-
-        <?php if($w == 'u' && $file[$i]['file']) { ?>
-        <span class="file_del">
-            <input type="checkbox" id="bf_file_del<?php echo $i ?>" name="bf_file_del[<?php echo $i;  ?>]" value="1"> <label for="bf_file_del<?php echo $i ?>"><?php echo $file[$i]['source'].'('.$file[$i]['size'].')';  ?> 파일 삭제</label>
-        </span>
-        <?php } ?>
-        
-    </div>
-    <?php } ?>
-
-
-    <?php if ($is_use_captcha) { //자동등록방지  ?>
-    <div class="write_div">
-        <?php echo $captcha_html ?>
-    </div>
-    <?php } ?>
 
     <div class="btn_confirm write_div">
         <a href="<?php echo get_pretty_url($bo_table); ?>" class="btn_cancel btn">취소</a>
@@ -244,7 +206,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             }
         }
 
-        <?php echo $captcha_js; // 캡챠 사용시 자바스크립트에서 입력된 캡챠를 검사함  ?>
+        
 
         document.getElementById("btn_submit").disabled = "disabled";
 
