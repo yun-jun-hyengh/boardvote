@@ -46,24 +46,68 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         </div>
 
         <ul class="btn_bo_user">
-        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
-            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
+            <?php if ($admin_href) { ?>
+                <li>
+                    <a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자">
+                        <i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span>
+                    </a>
+                </li>
+            <?php } ?>
+
+            <?php if ($rss_href) { ?>
+                <li>
+                    <a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS">
+                        <i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span>
+                    </a>
+                </li>
+            <?php } ?>
+
             <li>
-            	<button type="button" class="btn_bo_sch btn_b01 btn" title="게시판 검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">게시판 검색</span></button>
+                <button type="button" class="btn_bo_sch btn_b01 btn" title="게시판 검색">
+                    <i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">게시판 검색</span>
+                </button>
             </li>
-            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
-        	<?php if ($is_admin == 'super' || $is_auth) {  ?>
-        	<li>
-        		<button type="button" class="btn_more_opt is_list_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
-        		<?php if ($is_checkbox) { ?>	
-		        <ul class="more_opt is_list_btn">  
-		            <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
-		            <li><button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value"><i class="fa fa-files-o" aria-hidden="true"></i> 선택복사</button></li>
-		            <li><button type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value"><i class="fa fa-arrows" aria-hidden="true"></i> 선택이동</button></li>
-		        </ul>
-		        <?php } ?>
-        	</li>
-        	<?php }  ?>
+
+            <?php
+            // 공지사항 게시판일 때만 최고관리자에게만 글쓰기 버튼 허용
+            if ($bo_table == 'notice') {
+                if ($write_href && $is_admin == 'super') {
+            ?>
+                    <li>
+                        <a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기">
+                            <i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span>
+                        </a>
+                    </li>
+            <?php
+                }
+            } else {
+                // 그 외 게시판은 기존 조건대로 글쓰기 버튼 출력
+                if ($write_href) {
+            ?>
+                    <li>
+                        <a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기">
+                            <i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span>
+                        </a>
+                    </li>
+            <?php
+                }
+            }
+            ?>
+
+            <?php if ($is_admin == 'super' || $is_auth) { ?>
+                <li>
+                    <button type="button" class="btn_more_opt is_list_btn btn_b01 btn" title="게시판 리스트 옵션">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span>
+                    </button>
+                    <?php if ($is_checkbox) { ?>
+                        <ul class="more_opt is_list_btn">  
+                            <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
+                            <li><button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value"><i class="fa fa-files-o" aria-hidden="true"></i> 선택복사</button></li>
+                            <li><button type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value"><i class="fa fa-arrows" aria-hidden="true"></i> 선택이동</button></li>
+                        </ul>
+                    <?php } ?>
+                </li>
+            <?php } ?>
         </ul>
     </div>
     <!-- } 게시판 페이지 정보 및 버튼 끝 -->
